@@ -2,6 +2,7 @@ package com.zsx.android.androidlifecycledemo;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,8 +21,8 @@ import com.zsx.android.androidlifecycledemo.view_model.MyViewModel;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LifecycleOwner,View.OnClickListener {
-    private Button myButton;
+public class MainActivity extends AppCompatActivity implements LifecycleOwner, View.OnClickListener {
+    private Button myButton, goFragment;
     private RecyclerView mRecyclerView;
     //数据模型
     private MyViewModel myViewModel;
@@ -40,7 +41,9 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner,Vi
      */
     private void initView() {
         myButton = findViewById(R.id.myButton);
+        goFragment = findViewById(R.id.go_fragment);
         myButton.setOnClickListener(this);
+        goFragment.setOnClickListener(this);
 
         mRecyclerView = findViewById(R.id.lsitView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner,Vi
      * 获取数据
      */
     private void initData() {
-        MyLiveData<String> myLiveData=new MyLiveData<>();
+        MyLiveData<String> myLiveData = new MyLiveData<>();
         myLiveData.observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -69,10 +72,10 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner,Vi
                     //第一次获取
                     myAdapter = new MyAdapter(strings);
                     mRecyclerView.setAdapter(myAdapter);
-                }else{
+                } else {
                     //加载更多
-                    if (strings.size()==0){
-                        Toast.makeText(mRecyclerView.getContext(),"已加载完所有数据",Toast.LENGTH_SHORT).show();
+                    if (strings.size() == 0) {
+                        Toast.makeText(mRecyclerView.getContext(), "已加载完所有数据", Toast.LENGTH_SHORT).show();
                     }
                     myAdapter.setDatas(strings);
                 }
@@ -82,7 +85,11 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner,Vi
 
     @Override
     public void onClick(View view) {
-        //加载更多
-        myViewModel.getmMutableLiveData();
+        if (view.getId() == R.id.myButton) {
+            //加载更多
+            myViewModel.getmMutableLiveData();
+        } else {
+            startActivity(new Intent(view.getContext(), TwoActivity.class));
+        }
     }
 }

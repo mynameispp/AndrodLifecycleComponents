@@ -4,12 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
     <Button
         android:id="@+id/myButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+    <Button
+        android:id="@+id/go_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="去Fragment" />
+</LinearLayout>
     
     <android.support.v7.widget.RecyclerView
         android:id="@+id/lsitView"
