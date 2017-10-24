@@ -1,4 +1,5 @@
 # AndrodLifecycleComponents
 Androd Lifecycle Components 插件Demo
-
-使用LiveData,ViewModel，LifecycleOwner来模拟一个请求列表数据和展示的结合
+为了帮助开发着打造一款优秀的APP，Google可谓费尽心力，推出了各种诸如MVP,MVVM等等项目架构的思路，帮助开发者更加高效的开发，尽管这样，Google还是接着推出了一个新的项目架构，以便给予开发者更多的选择。
+这套架构最核心的就是生命周期组件，：Lifecycle Components用于管理UI控制器（Activity/Freagment）的生命周期，方便查询当前组件生命周期的状态。
+具体可在代码块里查看，Demo里面使用LiveData,ViewModel，LifecycleOwner来模拟一个请求列表数据和展示的结合
